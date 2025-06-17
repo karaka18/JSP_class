@@ -1,0 +1,45 @@
+MVC.txt
+
+p556~560
+
+model1 개발방식 : 
+    JSP를 사용해서 화면(디자인) + 개발(디비연결)을(를) 모두 처리 
+
+	 [클라이언트]   =>  [JSP페이지]  => [ DB ]
+     [   요청   ]
+
+
+model2 개발방식 :
+    JSP를 사용해서 화면, Java를 사용해서 개발을 각각 분리
+    
+    => MVC패턴 : Model, View, Controller를 사용한 개발 패턴
+    
+    - View : 화면구현 (디자인) / JSP
+    - Controller : View-Model을 연결 / Servlet
+    - Model : 기능구현 (개발-DB작업) / Java
+      (POJO - Plain Old Java Object : 순수 자바객체 <-> 서블릿(자바+웹) )
+    
+    [클라이언트]  => [ web.xml ]  =>  [ Controller ] => [Model] => [ DB ]
+    [   요청   ]						   ||
+    									[ View ]
+    									
+    									
+   * 객체지향  +  GUI => MVC 등장배경 									
+     => '객체 형태로 메세지를 주고받는 프로그램을 만들자'
+    
+   * MVC패턴의 본질 => 관심사의 분리(분업) => 좋은 코드를 생성하기 위함
+   
+   
+    [클라이언트]  => [ web.xml ]  => [FrontController] => [ Controller ] => [Model] => [ DB ]
+    [   요청   ]						 ||
+    									[ View ]
+   
+   
+   
+   
+   
+   
+    
+    
+    
+    
