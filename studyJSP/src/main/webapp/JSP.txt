@@ -1,0 +1,292 @@
+JSP.txt
+
+JSP2.3 & Servlet3.1 => Spring(Framework,boot)
+
+p10
+웹프로그래밍
+
+JSP(Java Server Page)
+ 서블릿 = Server + Applet(웹에서 실행되는 자바)
+  => 웹에서 실행되는 자바 + ASP언어 = >> JSP
+  
+  프로세스 : 메모리에 로드된 프로그램(실행중인 프로그램)
+  쓰레드 : 프로세스(프로그램)를 구성하는 최소 작업단위
+  
+  멀티 / 태스킹(task) <=> 멀티 프로세싱 (멀티쓰레딩)
+  
+  
+  p16
+     
+     사용자		= 요청 =>		[WEB서버]		= 요청 =>  		[WAS서버]  <->  [DataBase]
+  								(정적데이터:HTML,CSS,JS,Img.....)  (Web Application Server)
+  								    ||
+                <= 응답 =      
+  
+  
+  p24
+  
+  HTTP 프로토콜 : 통신을 위한 규약(약속)
+  (Hyper Text Transfer Protocol) 
+   => 요청(request), 응답(response) 으로 구성되어있음
+   
+    [ 시작(요청)라인 ]		[ 시작(요청)라인 ]
+    [헤더(일반/요청) ]		[헤더(일반/요청) ]
+    [ 본문(Body)	 ]		[ 본문(Body)	 ]
+      요청메세지			   응답메세지
+  
+    HTTP 요청메세지			 HTTP 응답메세지
+  
+  
+   HTTP 요청 - GET방식 : 전송할 데이터를 주소줄(URL)에 붙여서 전송
+    				 	 데이터(파라메터)의 길이가 256byte제한
+    				 	 body가 필요없음 => 빠른 전송속도
+    				 	 주소줄에 정보 오픈 => 보안취약점 발생
+   
+   			 - POST방식 : 전송할 데이터를 body에 담아서 전송 (주소줄X)
+   			 			  데이터(파라메터)의 길이가 제한없음
+   			 			  => 느린 전송속도
+   			 			  => 보안취약점 감소
+  
+  
+   HTTP 응답 : 요청 처리결과(+ MIME타입), 상태코드(HTTP STATUS) 
+   
+   웹컨테이너 : 웹을 실행하기위한 모든 정보를 가지고있는 것
+               (생성~ 소멸 모든 처리) => Tomcat
+   
+   
+   * JSP의 include동작 처리
+      
+   1) <%@ include file="color.jsp" %>
+   - JSP 지시어(include)
+   - 파일을 추가하는 동작
+   - 파일(소스코드)을 먼저 합치고 그다음 컴파일 후 실행
+   => 소스코드를 추가 / 설정, 공통값...
+   
+   2) <jsp:include page="../inc/top.jsp"/>
+   - JSP 액션태그
+   - 페이지를 추가하는 동작
+   - 페이지를 먼저 컴파일 후 그다음 파일을 추가
+   => 만들어진 화면(jsp페이지)을 추가 / jsp 공통 페이지 
+   
+   
+   * 내장객체 (p177~208)
+   => JSP 내부에 포함되어있는 객체 (이미 생성된 객체) 
+   => JSP  페이지를 실행시 (서블릿코드 실행시) 생성
+   
+   - javax.servlet 패키지 (8)
+   		request : 클라이언트의 HTTP요청 정보를 저장한 객체(p25) 
+   		response : HTTP요청에 따른 응답정보를 저장한 객체
+   		session : 클라이언트의 정보를 세션에 저장한 객체
+   		pageContext : 페이지실행에 필요한 프로젝트정보를 저장한 객체
+   		out : 응답페이지 전송을 위한 출력 스트림 객체
+   		application : 프로그램(프로젝트)의 프로젝트 정보를 저장한 객체 
+   		config : 서블릿(페이지)의 설정값을 저장한 객체
+   		page : 실행하고있는 페이지객체-인스턴스(서블릿)
+   		 
+   - java.lang 패키지 (1)
+   		exception : 예외처리을 위한 객체
+   		
+   		
+   D:\Shared\workspace_jsp6\.metadata\.plugins
+     \org.eclipse.wst.server.core
+     \tmp0\work\Catalina\localhost\studyJSP\org\apache\jsp\jsp
+   
+   
+  
+  
+  p209~
+   영역객체 / 속성
+   
+   영역(Scope) : 속성을 공유할 수있는 유효한 범위
+   	=> page, request, session, application 
+   속성(Attribute) : 영역에서 공유되는 데이터(객체)
+   
+   
+   [영역]		[영역객체]			[유효범위]
+   	page		 pageContext		 해당 페이지(_jspService() 실행되는 동안)
+   	request		 request			 클라이언트의 요청이 처리되는 동안
+   	session		 session			 세션이 유지되는 동안(브라우저당 1개생성)
+   	application	 application		 웹 애플리케이션(프로젝트) 실행되는 동안			
+   
+   
+   - 영역객체에 정보(속성)를 저장
+   => [영역객체].setAttribute("이름",값); 
+   
+   - 영역객체에 정보(속성)를 사용
+   => [영역객체].getAttribute("이름");
+   
+   
+   
+   세션, 쿠키 (p270~)
+   
+   * 서버 <-> 클라이언트 통신은 HTTP프로토콜을 사용한다
+   * HTTP프로토콜의 특징은 상태를 유지X(무상태성) 
+    => 상태정보를 기억하기위해서 만들어진 개념 => 세션,쿠키
+    
+   * 세션(Session) : 서버측의 컨테이너에 관리되며,
+                     컨테이너에 접속~종료(브라우저종료)까지 유지되는 정보
+                     
+    
+   [클라이언트]								[서버]
+   
+   			   ---------1)연결&요청-------->
+   			   
+   			   <---------2)1번요청에 응답--------
+  (네이버 페이지 실행완료)
+   
+   			   ---------3)연결&요청-------->
+   								(1번 요청,3번요청이 동일한 사람의 정보인지 확인X)
+   			   <---------4)3번요청에 응답--------
+
+
+ * + 세션   			   
+   [클라이언트]								[서버]
+   
+   			   ---------1)연결&요청-------->
+   			   
+   			   <---------2)1번요청에 응답 + sessionID 전달--------
+  (네이버 페이지 실행완료)
+  (클라이언트의 쿠키영역에 sessionID를 저장)
+   
+   			   ---------3)연결&요청 + sessionID -------->
+   								(1번 요청,3번요청이 동일한 사람의 정보가 있음)
+   			   <---------4)3번요청에 응답--------
+   			   
+  
+  p280~
+  * 쿠키 (Cookie) : 클라이언트 측에서 관리되는 상태정보
+    => 브라우저를 종료해도 생존기간이 남아있으면 데이터가 유지(HDD 저장)
+    => 보안상 취약점이 있음
+   	=> 이름,값,유효기간,도메인,경로....(주로 알파벳, 숫자로 구성)
+   	=> 1) HTTP 헤더
+   	=> 2) 서블릿 API - cookie 
+   			   
+   			   
+   
+      [클라이언트]								[서버]
+   
+   			   ---------1)연결&요청-------->
+   			   
+   			   <---------2)1번요청에 응답 + Cookie 전달--------
+  (네이버 페이지 실행완료)
+  (클라이언트의 HDD에 Cookie를 저장)
+   
+   			   ---------3)연결&요청 + Cookie -------->
+   					    (1번 요청,3번요청이 동일한 사람의 정보가 있음)
+   			   <---------4)3번요청에 응답--------
+   
+   
+   
+   
+   404 에러페이지 
+   
+   https://slack.com/intl/ko-kr/121   
+   https://www.pixar.com/1234
+   https://www.marvel.com/1234
+   https://github.com/1234zxczxc
+   https://mailchimp.com/1234/
+   https://www.kualo.com/1234
+   
+   
+   * JDBC(Java DataBase Connectivity) 
+     : Java와 DBMS(mysql)을 연결시켜주는 API(응용프로그램 인터페이스)
+      
+   
+   
+   https://dev.mysql.com/doc/connector-j/en/connector-j-reference.html
+   
+   CREATE TABLE `jspdb`.`member` (
+  `id` VARCHAR(50) NOT NULL,
+  `pw` VARCHAR(50) NULL,
+  `name` VARCHAR(50) NULL,
+  `reg_date` TIMESTAMP NULL,
+  PRIMARY KEY (`id`));
+   
+   
+   CREATE TABLE `jspdb`.`itwill_member` (
+  `id` VARCHAR(50) NOT NULL,
+  `pass` VARCHAR(50) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `age` INT NULL,
+  `gender` VARCHAR(2) NULL,
+  `email` VARCHAR(200) NOT NULL,
+  `reg_date` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+   
+   
+  * 서블릿(Servlet) & JSP(Java Server Page)
+   
+   - 서블릿 : 자바코드로 웹처리를 수행가능한 기술
+   - JSP : HTML형태로 구성된, 자바코드를 실행하는 기술
+   
+   .jsp -> .java -> .class => 실행
+   			(서블릿)
+   
+   * 서블릿 생성 규칙
+   1) javax.servlet.Servlet 인터페이스를 구현(상속)
+   2) 1)번대신 javax.servlet.http.HttpServlet 클래스를 구현(상속)
+   3) doGet() / doPost() 메서드를 정의,
+	   매개변수로 java.servlet.http.HttpServletRequest,
+	   				   java.servlet.http.HttpServletResponse를 사용해야함
+   4) java.io.IOException, javax.servelt.ServletException을 사용한 예외처리 필터
+   5) 배포서술자(web.xml)을 사용하여 서블릿과 주소를 매핑
+     => 서블릿 3.0이후에는 필수가 아님(어노테이션 사용한 매핑)
+   
+   * JSP <-> Servlet 변환 규칙
+   1) JSP 스크립틀릿<% %> : 서블릿안에 있는 service()메서드안에 작성
+   2) JSP 표현식 <%= %> : 서블릿안에 있는 service()메서드안에 out.println() 변환
+   3) JSP 선언문 <%! %> : 서블릿 클래스의 멤버(변수,메서드)형태로 변환
+   4) HTML 코드 : 서블릿안에 있는 service() 메서드안에 out.write() 변환
+   
+   
+   
+   p510~
+   JSTL(JSP Standard Tag Library) & EL(Expression Language)
+   
+   https://tomcat.apache.org/download-taglibs.cgi
+    -taglibs-standard-impl-1.2.5.jar
+    -taglibs-standard-jstlel-1.2.5.jar
+ 	-taglibs-standard-spec-1.2.5.jar
+ 	다운로드 & 설치(WEB-INF/lib)
+   * EL(Expression Language) : 표현 언어
+   => JSP의 표현식 <%= %>을 대신해서 사용하는 방법 ${ }
+   
+   ${ 값 or 변수명 or 연산식 or 메서드호출(리턴O) }
+   => <%=값 %>, out.print("값");를 모두 대신해서 처리
+   
+   ${객체명.변수명} or ${객체명['변수명']}
+   
+   * EL내장객체 (p513)
+   	- pageScope
+   	- requestScope
+   	- sessionScope
+   	- applicationScope
+   
+   - param
+   - paramValues
+   - header
+   - headerValues
+   - cookie
+   - initParam
+   - pageContext
+   
+   * EL 연산자 (p516)
+   
+   - . [] ()  x? a:b	 empty
+   
+   ex) &{ empty member }
+   
+   - + - * /(div)  %(mod)
+   
+   ex) &{ 10/20 } == ${ 10div20 }
+   
+   [ &&(and)		||(or)		!(not)	]
+   
+   [ ==(eq)	!=(ne)		>(gt)	>=(ge)	<(lt)	<=(le) ]
+  
+  
+  
+   
+  
+  

@@ -1,0 +1,21 @@
+1 회원관리 프로그램.txt
+	
+	CREATE TABLE `jspdb`.`itwill_member` (
+	`id` VARCHAR(50) NOT NULL,
+	`pass` VARCHAR(50) NOT NULL,
+	`name` VARCHAR(45) NULL,
+	`age` INT NULL,
+	`gender` VARCHAR(2) NULL,
+	`email` VARCHAR(200) NOT NULL,
+	`reg_date` TIMESTAMP NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+
+
+	O - 회원가입
+	O - 로그인 / 로그아웃
+	O - 메인페이지
+	O - 내정보 보기(마이페이지)
+	O - 정보 수정하기
+	O - 정보 삭제하기(탈퇴하기)
+	O - 회원 전체 목록 조회(관리자계정만)

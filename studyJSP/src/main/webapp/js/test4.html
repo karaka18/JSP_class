@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	document.write(" <h2> 반복문 </h2> ");
+	
+//	for(초기식;조건식;증감식){
+//		실행문; if~else, for		
+//	} 
+	
+	// 1~10숫자의 홀수, 짝수 총합
+	
+	var sum1 = 0, sum2 = 0;
+	for(var i = 1;i<=10;i++){
+		if(i % 2 == 0){
+			sum1 += i;
+		}else{
+			sum2 += i;
+		}
+	}
+	document.write(" 짝수의 합" + sum1);
+	document.write(" 홀수의 합" + sum2);
+	
+	// 무한반복문(무한루프)
+	
+//	for(;;){}
+//	for(;true;){}
+//	while(true){}
+//	do{
+//		
+//	}while(true);
+//		for(var i = 0;;i++){
+//	}
+	
+	document.write("<hr>");
+	
+//	for(;;){
+//		document.wrte("Hello!");
+//	}
+	
+	// 보조 제어문
+	// 1)break문 : (가장 가까운) 반복문을 종료(탈출)
+	for(var i =1;i<=10;i++){ 
+		if(i%3==0) break;
+		document.write(i+" ");
+	}
+
+	document.write("<hr>");
+	
+	// 2) continue 문 : 해당 루프를 실행x, 다음루프로 넘어감
+	for(var i =1;i<=10;i++){ 
+		if(i%3==0) continue;
+		document.write(i+" ");
+	}	
+	
+	document.write("<hr>");	
+	
+	// 중첩 반복문(다중 for문)
+//	for(초기식;조건식;증감식){
+//		for(초기식;조건식;증감식){			
+//		}
+//	}
+	
+	// 4시00~5시00분까지를 표현
+	// 4시0분
+	// 4시1분
+	// 4시2분
+	//  ...
+	// 5시0분
+	
+	for(var j=0;j<=24;j++){
+		for(var i=0;i<=60;i++){
+			if(j ==5){
+				document.write(j+"시"+i+"분"+"<br>");
+				break;
+			} 
+			if(i == 60) continue;
+			document.write(j+"시"+i+"분"+"<br>");
+		}
+	}
+	
+	document.write("<hr>");
+	
+	// 구구단 출력 2~9단
+	for(var i = 2;i<=9;i++){
+		document.write("<h3>" + "[ "+ i +"단 ]" + "</h3>" + "<br>");
+		for(var j = 1;j<=9;j++){
+			document.write(i + " * " + j + " = " + i*j + "<br>");
+		}
+	}
+	document.write("<hr>");
+	
+	// 구구단 가로 출력
+	for(var i = 0;i<=9;i++){
+		for(var j = 2;j<=9;j++){
+			if (i == 0)
+				document.write("[ "+ j +"단 ]" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			else
+				document.write(j + " * " + i + " = " + i*j +"&nbsp;&nbsp;");
+		}
+		document.write("<br>");
+	}
+	
+	document.write("<h2> 함수(function) </h2>");
+	
+	document.write("<hr>");
+	// 변수 -> 데이터를 저장
+	// 함수 -> 코드(실행문)을 저장
+	// 1) 함수의 선언
+	//		function 함수명(){
+	//			실행문;
+	//			실행문;
+	//			....
+	//	}
+	//	var 변수 =		function(){
+	//							실행문;
+	//							실행문;
+	//							....
+	//					}
+	
+	// 2)함수의 사용(호출)
+	
+	// 함수명();
+	
+	// [익명함수]
+	// 참조변수명();
+	
+	// "안녕하세요! 아이티윌 입니다";
+	// 메세지를 출력하는 Hello 함수 생성
+	function Hello(){
+		document.write("안녕하세요! 아이티윌 입니다");
+	}
+	
+	Hello();
+	
+	document.write("<hr>");
+	
+	// 매개변수 : 함수에 전달되는 값
+	// function 함수명(매개변수1,매개변수2,....){
+	//		실행코드(매개변수1+매개변수2)
+	// }
+	
+	// 매개변수가 있는 함수의 경우 호출시 매개변수의 값을 전달해야함
+	
+	//함수명(값1,값2);
+	
+	// 매개변수 2개를 입력해서 두개의 합을 출력하는 함수 Sum()생성
+	function Sum(num1, num2){
+		// JS 매개변수는 타입X
+		document.write(num1 + "+" + num2 + "=" + (num1+num2));
+	}
+	
+	Sum(100,200);
+	document.write("<hr>");
+	Sum(50,20);
+	document.write("<hr>");
+	
+	// 매개변수를 1개(숫자)를 입력받아서 1~입력받은 수까지의 합을 출력하는 함수
+	function Total(num1){
+		var sum = 0;
+		for(var i = 1;i<=num1;i++){
+			sum +=i;
+		}
+		document.write(sum);
+	}
+	
+	Total(10);
+	
+	document.write("<hr>");
+	// 리턴문 : 함수를 실행의 결과로 특정값을 돌려줄수 있음
+	// function 함수명 (){
+	// 		return 값;
+	// }
+	
+	// function 함수명 (){
+	// 		return;	// 함수의 종료
+	// }
+	
+	// 함수의 종료시점
+	// 1) 처음~끝 모든 실행이 끝난후
+	// 2) 값을 리턴하는경우 
+	
+	function Sum2(num1,num2){
+		// JS 매개변수는 타입X
+		return num1+num2;
+	}
+	Sum2(100,200);
+	document.write(Sum2(100,200));		// 출력문에 함수를 바로 호출
+	
+	document.write("<hr>");
+	
+	var s2 = Sum2(200,400);		// 함수의 값을 변수에 저장
+	document.write(s2);				// => 내장함수(JS에서 기본적으로 제공하는 함수)
+	// alert();
+	// prompt();
+	
+	
+	document.write("<hr>");
+		
+</script>
+</head>
+<body>
+	<h1>test4.html</h1>
+</body>
+</html>

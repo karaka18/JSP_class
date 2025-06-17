@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	document.write("<h2> 제어문 </h2>");
+	// 제어문 : 프로그램의 흐름(실행)을 제어하도록 만들어주는 실행문
+	// - 조건문(if, else if)
+	// - 선택문(switch-case)
+	// - 반복문(for, while, do-while)
+	
+	document.write("<h3>조건문 </h3>");
+	
+//	if(조건식){
+//		조건식이 참일때 실행문
+//	}
+
+//	if(조건식){
+//		조건식이 참일때 실행문
+//	}
+
+	var num = 10;
+	
+	if(num < 20){
+		document.write("출력!");
+	}
+	document.write("<br>");
+	if(true){
+		document.write("출력2!");
+	}
+	document.write("<br>");
+	if(false){
+		document.write("출력3!");
+	}
+	if(1){
+		document.write("출력4!");
+	}
+	document.write("<br>");
+	if(0){
+		document.write("출력5!");
+	}
+	
+	// 절대값 계산하기
+	// 10 => 10, -10 => 10
+	
+	var num1 = -88;
+	document.write(num1 < 0 ? -num1:num1);
+	document.write("<br>");
+	
+	
+	// num1 변수의 홀,짝 출력해보기
+	
+//	var num1 = prompt(" 변수값 입력! ");
+	
+	if(num1 % 2 != 0){
+		document.write("홀");
+	}
+	else{
+		document.write("짝");
+	}
+	
+	document.write("<br>");
+	// 학점 출력 프로그램 생성
+	// 학생의 점수를 입력받아서
+	// [A-90~100, B-80~90, C-70~79, D-60~69, F-0~59]
+	// 점수에 알맞은 등급 출력
+	
+	var score = prompt("점수 입력! ");
+	
+	if(score <= 100 && score >= 0){
+		if(score >= 90){
+			document.write("A");
+		}else if(score >=80){
+			document.write("B");
+		}else if(score >= 70){
+			document.write("C");
+		}else if(score >= 60){
+			document.write("D");
+		}else{
+			document.write("F");
+		}
+	}else
+		document.write("0~100사이 값을 입력해주세요");
+	
+	
+	// Q. 현재 월 정보를 입력후 계절정보 출력
+	//		3~5 "봄", 6~8 "여름"
+	//		9~11 "가을", 12~2 "겨울"
+	document.write("<br>");
+	var season = prompt("1~12월 정보를 입력하세요!");
+	
+	if(season >=3 && season <= 5){
+		document.write("봄");
+	}else if(season >=6 && season <= 8){
+		document.write("여름");
+	}else if(season >=9 && season <= 11){
+		document.write("가을");
+	}else if(season == 12 || season >= 1 && season <= 2){
+		document.write("겨울");
+	}
+	document.write("<br>");
+	
+	// Q. 로그인 처리 로직
+	var DBID = "itwill";
+	var DBPW = "1234";
+	
+	// 프롬프트창 사용=> ID,PW 각각 입력
+	// PW입력이 완료시 => 로그인여부 체크해서 알려주기
+	// 아이디를 비교 O/X
+	// 아이디가 같을때 비밀번호 비교 O/X
+	
+	var id = prompt("아이디 입력! ");
+	var pw = prompt("비밀번호 입력! ");
+	if(DBID == id){
+		if(DBPW == pw){
+			alert("로그인 완료!");
+		}
+		else{
+			alert("비밀번호가 잘못되었습니다.");
+		}
+	}
+	else {
+		alert("없는 아이디 입니다.");
+	}
+	
+	document.write(" <h2> 선택문 <h2>");
+	
+	// switch-case 종료
+	// 1) 처음~끝까지 모두 실행(해당사항 없음)
+	// 2) default 실행되면 종료
+	// 3) 트정 케이스를 실행후 break문을 만난경우
+	// 	*	만약 break문이 없는 경우 다음에오는
+	//		모든 케이스를 한줄식 실행( 해당여부와 상관없음 )
+	//		다음 break문을 만날때 까지
+	
+	/* switch(정수식){	// 숫자, 문자
+	case 값:
+		실행문;
+		break;
+	case 값:
+		실행문;
+		break;
+	case 값:
+		실행문;
+		break;
+	default:
+		실행문;
+	} */
+	
+	var num = 10;
+	
+	switch(num){
+	case 10:
+		document.write(" 10! ");
+		break;
+	case 9:
+		document.write(" 9! ");
+		break;
+	case 9:
+		document.write(" 8! ");
+		break;
+	case 9:
+		document.write(" 7! ");
+		break;
+	case 9:
+		document.write(" 6! ");
+		break;
+	default:
+		document.write(" 그외 나머지! ");
+	}
+	
+	document.write("<br>");
+	
+	// 학점 출력 프로그램 생성
+	// 학생의 점수를 입력받아서
+	// [A-90~100, B-80~89, C-70~79, D-60~69, F-0~59]
+	// 점수에 알맞은 등급 출력
+	// => switch-case 사용
+	
+	var score1 = prompt("점수를 입력하세요!");
+	score1 = Math.floor(score1 / 10) * 10;
+	
+	var grade;
+	
+	switch(score1){
+	case 100:
+	case 90:
+		grade = "A" // document.write("A등급");
+		break;
+	case 80:
+		grade = "B" //document.write("B등급");
+		break;
+	case 70:
+		grade = "C" // document.write("C등급");
+		break;
+	case 60:
+		grade = "D" // document.write("D등급");
+		break;
+	default:
+		grade = "F" // document.write("F등급");
+	}
+	
+	document.write(grade+"등급");
+	
+	// 사용자의 입력에 따른 페이지 이동
+	// naver,NAVER,네이버,spdlqj,...
+	// 구글, 네이트, ...
+	
+	
+	// location.href="https://www.naver.com";
+	var address = prompt("페이지 입력");
+	switch(address){
+	case "naver":
+	case "NAVER":
+	case "네이버":
+	case "spdlqj":
+		location.href="https://www.naver.com";
+		break;
+	case "구글":
+	case "google":
+	case "GOOGLE":
+	case "rnrmf":
+		location.href="https://www.google.com";
+		break;
+	case "네이트":
+	case "nate":
+	case "NATE":
+	case "spdlxm":
+		location.href="https://www.nate.com";
+		break;
+	default:
+		document.write("없는 주소입니다.");
+	}
+	
+	document.write("<h2> 반복문 </h2>");
+	// 반복문 : 코드를 조건에 맞게 여러번 반복하는
+	// for(초기식;조건식;증감식){
+	//		반복할 코드
+	// }
+	
+	// 초기식;
+	// while(조건식){
+	//		반복할 코드
+	//		증감식;
+	// }
+	
+	// 초기식;
+	// do{
+	//		반복할코드
+	//		증감식;
+	//	}
+	
+	document.write("<hr>");
+	
+	// for문 사용 1~10 까지 숫자 가로 출력
+	for(var i = 1; i<=10;i++){
+		document.write(i+" ");
+	}
+	
+	document.write("<hr>");
+	
+	// 11 12 13 14 15 16 17 18 19 20
+	for(var i = 11; i<=20;i++){
+		document.write(i+" ");
+	}
+	
+	document.write("<hr>");
+	
+	/* for(i = 1; i<=10;i++,i++){
+		document.write(i+" ");
+	} */
+	
+	for(var i = 1; i<=10;i+=2){
+		document.write(i+" ");
+	}
+	
+	document.write("<hr>");
+	
+	for(var i = 10; i>=1;i--){
+		document.write(i+" ");
+	}
+	
+	document.write("<hr>");
+	
+	// 2단 출력
+	var j = 2;
+	for(var i=1;i<=9;i++){
+		document.write(j + " * "+ i + " = "+ i * j + "<br>");
+	}
+	
+	document.write("<hr>");
+	
+	// 1~10까지 숫자의 합을 출력
+	var sum = 0;
+	for(var i = 1;i<=10;i++){
+		sum += i;
+	}
+	document.write(sum);
+	
+	document.write("<hr>");
+	
+	// 5!
+	var fac = 1;
+	for(var i = 1;i<=5;i++){
+		fac *= i;
+	}
+	document.write(fac);
+	
+	document.write("<hr>");
+	
+	// 1~10까지 숫자의 합(while)
+	var sum1 = 0, a = 1;
+	while(a <=10 ){
+		sum1 += a;
+		a++;
+	}
+	document.write(sum1);
+	
+</script>
+</head>
+<body>
+	
+	<h1>test3.html</h1>
+	
+</body>
+</html>

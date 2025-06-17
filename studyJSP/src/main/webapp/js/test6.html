@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 window 객체</title>
+<script type="text/javascript">
+	document.write(" <h2> 이벤트(Event) </h2> ");
+	// 이벤트(event) : 웹 브라우저에 방문하는 사용자가 수행하는 모든 동작
+	// 
+	
+	// 함수(function) 생성
+	function fn1(){
+		alert(" 동작1 실행 ");
+		alert(" 동작2 실행 ");
+		alert(" 동작3 실행 ");
+	}
+	
+	
+	
+</script>
+
+</head>
+<body onload="alert(' 로드 성공 이벤트!');">
+	<h1>test6.html</h1>
+	
+	<!-- <input type="button" value="버튼1" onclick=" js코드/함수호출 "> <br> -->
+	<input type="button" value="버튼1" onclick=" alert(' 버튼1 클릭! ');"> <br>
+	<input type="button" value="버튼2" onclick=" fn1(); "> <br>
+	<input type="button" value="버튼3" onclick=" fn1(); "
+														  ondblclick=" alert(' 버튼3 더블클릭 '); "> <br>
+	<input type="button" value="버튼4" onmouseover=" alert(' 버튼4 마우스 오버! '); "> <br>	
+	<input type="text" onkeyup=" alert(' 키업 이벤트! ');">; <br>
+	
+	<hr>
+	<!-- 4행 3열의 테이블 생성 -->
+	<table border="1">
+		<tr bgcolor="yellow" onmouseover="style.background='green';"
+								   onmouseleave="style.background='yellow';">
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+		</tr>
+		<tr bgcolor="yellow" onmouseover="style.background='green';" 
+								   onmouseleave="style.background='yellow';">
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+		</tr>
+		<tr bgcolor="yellow" onmouseover="style.background='green';" 
+								   onmouseleave="style.background='yellow';">
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+		</tr>
+		<tr bgcolor="yellow" onmouseover="style.background='green';" 
+								   onmouseleave="style.background='yellow';">
+				<td>10</td>
+				<td>11</td>
+				<td>12</td>
+		</tr>
+	</table>
+	
+	<hr>
+	
+	<script type="text/javascript">
+		// 창(새탭)을 열기
+		// window.open("test1.html","창이름","width=300, height=400");
+		
+		// 버튼생성, 버튼 클릭시 네이버 페이지를 여는 새창(400*300)
+		function winopen(){
+			window.open("https://www.naver.com","네이버","width=400, height=300, top=500, left=500");
+			window.close();
+		}
+	</script>
+	<h2>window 객체</h2>
+	<input type="button" value="네이버열기"  
+			onclick="winopen();">
+	
+	<script type="text/javascript">
+		//alter(window.document);
+		//console.log(window.document);
+		//alert(window.document.title);
+		alert(document.title);
+		windwo.alert();
+		
+		function chColor(c){
+			document.bgColor = c;
+		}
+		
+		
+	</script>
+	<h2> window-document 객체</h2>
+	<!-- 라디오 버튼을 클릭할때 마다 버튼색으로 배경색을 변경 -->
+	<input type="radio" name="color" onclick="chColor(pink);">pink
+	<input type="radio" name="color" onclick="chColor(orange);">orange
+	<input type="radio" name="color" onclick="chColor(purple);">purple
+	<!-- <input fype="checkbox">purple2 -->
+	
+	<h2>window-history 객체</h2>
+	
+	<a href="test6-1.html">test6-1.html 이동</a>
+	
+	
+	
+	
+</body>
+</html>
